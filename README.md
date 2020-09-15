@@ -1,20 +1,39 @@
-## CSCI 1105: Introduction To Programming Coursework
+# GUESS WHO?
 
-<p>Programming Language: Java </p>
-<p>Date: December 2019 </p>
-<p>Student: Adam Grimshaw </p>
-<p>School: Southwest Technical College </p>
+## Synopsis
+This is a text based version of the classic board game Guess Who?
 
-### Repository Description
+## Motivation
+I built this for the final project of an intro to programming class. It demonstrates my current knowledge of Java.
 
-This repository contains examples of my work from the Introduction to Programming class. This includes exercises assigned for each topic, as well as a final project proposed by the student. Topics for this course included program design, console output, loops, methods, arrays, JavaDocs, and unit testing.
+## How to Run
+Only the java file itself is necessary to play the game.
 
-### Personal Bio
+## Code Example
+This method replaces a character's name in an array with a blank. The method has four parameters: an attribute, an array, an index number, and a boolean. The method combs through an array at a particular index searching for an attribute (string). The boolean value determines what to do when that attribute is found. Either the character's name will be replaced or kept. This method works for manipulating both the user's gameboard and the computer's gameboard.
+```
+public static void removeCharacters(String attribute, String[][] array, int arrayIndex, boolean bool) {
+	for(int i = 0; i < array.length; i++) {
+		if(array[i][arrayIndex].equals(attribute) == bool) {
+			array[i][0] = "";
+		}
+	}
+}		
+```
 
-- Software Development student at Southwest Technical College
-- Commercial Photographer 2010-Present
-  - Specialty in product and interiors. High level post-production.
-
-### Program Goals
-
-My interest in this program is to see if software development would be a suitable career path for me. If so, my goal would then be to acquire the skill sets needed to qualify for a junior level position at a good company.
+## Tests
+The checkQuestion method will return true if the user's input was a valid command. It will return false if the command was not valid, or if the command was valid but did not complete the player's turn.
+```
+@Test
+	public void checkQuestion() {
+		assertTrue(GuessWho.checkQuestion(characterArray, "MAN?"));
+		assertTrue(GuessWho.checkQuestion(characterArray, "DAISY?"));
+		assertTrue(GuessWho.checkQuestion(characterArray, "HAT?"));
+		assertTrue(GuessWho.checkQuestion(characterArray, "BLACK HAIR?"));
+		assertFalse(GuessWho.checkQuestion(characterArray, "MAN"));
+		assertFalse(GuessWho.checkQuestion(characterArray, "man?"));
+		assertFalse(GuessWho.checkQuestion(characterArray, "asdf"));
+		assertFalse(GuessWho.checkQuestion(characterArray, "LIST"));
+		assertFalse(GuessWho.checkQuestion(characterArray, "HELP"));
+	}
+```
